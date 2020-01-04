@@ -35,6 +35,6 @@ dist:
 	mkdir -p ../dist/usr/bin/calcula
 	cp calcula ../dist/usr/bin/calcula
 
-
+ 
 
 

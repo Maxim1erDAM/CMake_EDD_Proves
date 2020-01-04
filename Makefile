@@ -1,6 +1,8 @@
-
 CC=gcc
 CFLAGS=-Wall -g
+
+calc.o: calc.c calc.h
+	$(CC) $(CFLAGS) -c calc.c -o calc.o
 
 calcula: calcula.c calc.o
 	$(CC) $(CFLAGS) calcula.c calc.o -o calcula
@@ -11,7 +13,6 @@ install: dist
 .PHONY: distclean
 distclean: 
 	rm -rf ../dist;
-
 
 .PHONY: targz
 targz: clean
@@ -27,14 +28,9 @@ clean:
 	rm -rf *.o
 	rm -rf calcula
 
-calc.o: calc.c calc.h
-	$(CC) $(CFLAGS) -c calc.c -o calc.o
-
+.PHONY: dist
 dist: 
 	rm -rf ../dist;
 	mkdir -p ../dist/usr/bin/calcula
 	cp calcula ../dist/usr/bin/calcula
-
- 
-
 

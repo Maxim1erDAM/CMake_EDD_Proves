@@ -1,11 +1,21 @@
+
 CC=gcc
 CFLAGS=-Wall -g
 
+
+
 .PHONY: dist
-dist: clean calcula
+install: dist
+	cp calcula ../dist/usr/bin/calcula
 	rm -rf ../dist;
 	mkdir -p ../dist/usr/bin/calcula
-	cp calcula ../dist/usr/bin/calcula
+
+
+.PHONY: distclean
+distclean: dist
+	rm -rf ../dist;
+
+
 .PHONY: targz
 targz: clean
 	mkdir -p source
@@ -15,17 +25,24 @@ targz: clean
 	rm -rf calcula.tar
 	rm -rf source
 
-install:dist
-	cp -r ../dist/* /
+.PHONY: clean
+clean:
+	rm -rf *.o
+	rm -rf calcula
 
+
+
+.PHONY: install
+install: calcula		
+	rm -rf ../dist
+	mkdir -p ../dist/usr/bin/calcula
+	cp calcula ../dist/usr/bin/calcula
+
+	
 calc.o: calc.c calc.h
 	$(CC) $(CFLAGS) -c calc.c -o calc.o
 
-.PHONY: clean
 
 calcula: calcula.c calc.o
 	$(CC) $(CFLAGS) calcula.c calc.o -o calcula
 
-clean:
-	rm -rf *.o
-	rm calcula

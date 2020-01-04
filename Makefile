@@ -9,7 +9,7 @@ install: dist
 	cp -r ../dist/* /
 
 .PHONY: distclean
-distclean: dist
+distclean: 
 	rm -rf ../dist;
 
 
@@ -34,6 +34,7 @@ dist:
 	rm -rf ../dist;
 	mkdir -p ../dist/usr/bin/calcula
 	cp calcula ../dist/usr/bin/calcula
+
 
 
 
